@@ -17,25 +17,34 @@
 					<label for="city"><input type="text" name="city" id="city" placeholder="city" /></label>
 					<input type="button" value="consultar" id="button" />
 				</form>
-				<div class="location"><span class="icon-location1"></span>Santander, España</div>
+				<div class="location"></div>
 			</header>
 			<main>
 				<div class="wrapper" id="info">
-					<p class="small back-text date">Febrery 23, 16:48</p>
-					<p class="small white-text extremes"></p>
+					<p class="small back-text date"></p>
+
+					<p class="small white-text extremes">
+						<img width="25" src="./svg/thermometer.svg" alt="celsius degree" />
+					</p>
 					<div class="current">
 						<div id="icon">
-							<span class="weather-icon icon-sun"></span>
-							<span class="small weather-descr">sunny</span>
+							<span class="weather-icon"></span>
+							<span class="small weather-desc"></span>
 						</div>
-						<p class="big white-text temp">19ºC</p>
+						<p class="big white-text temp"></p>
 					</div>
-					<p class="small white-text feels-like">Feels like 19º C</p>
+					<p class="small white-text feels-like"></p>
 				</div>
 			</main>
+			<div class="icons"></div>
 		</div>
 
-		<script src="./js/script.js"></script>
+		<script type="module" src="./js/script.js"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+			integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+			crossorigin="anonymous"
+		></script>
 		<script src="https://test.gisehaag.com/assets/js/footer.js"></script>
 	</body>
 </html>

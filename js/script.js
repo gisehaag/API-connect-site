@@ -1,3 +1,5 @@
+import icons from './icons.js';
+
 class weatherApp {
 	constructor() {
 		this.container = document.querySelector('.container');
@@ -19,6 +21,8 @@ class weatherApp {
 		this.weatherDesc = this.container.querySelector('.weather-desc');
 		this.temp = this.container.querySelector('.temp');
 		this.feelsLike = this.container.querySelector('.feels-like');
+
+		this.icons = this.container.querySelector('.icons');
 	}
 
 	addEvents() {
@@ -65,16 +69,76 @@ class weatherApp {
 	};
 
 	displayData() {
+		let city = this.weatherData.name;
+		let country = this.weatherData.sys.country;
+		let currentDate = moment().format('MMMM DD, HH:mm');
 		let tempMinC = Math.floor((this.weatherData.main.temp_min - 273.15));
 		let tempMaxC = Math.ceil((this.weatherData.main.temp_max - 273.15));
-		this.extremes.innerHTML = `
-			Day ${tempMaxC} <span class="icon-long-arrow-up"></span> ·
-			Night ${tempMinC} <span class="icon-long-arrow-down"></span>
-		`
+		let id = this.weatherData.weather[0].id;
+		let description = this.weatherData.weather[0].description;
+		let temp = Math.floor((this.weatherData.main.temp - 273.15));
+		let feels = Math.floor((this.weatherData.main.feels_like - 273.15));
 
-		// this.info.innerHTML += `<p>la cuidad consultada es </p>
-		// <img scr="http://openweathermap.org/img/w/${this.weatherData.weather[0].icon}.png">`;
-	}
+
+		this.location.innerHTML = `
+		<span class="icon-location1"></span>
+		${city}, ${country}
+		`;
+
+		this.date.innerHTML = `${currentDate}`;
+
+		this.extremes.innerHTML += `
+		Day ${tempMaxC}º <span class="icon-long-arrow-up"></span> ·
+		Night ${tempMinC}º <span class="icon-long-arrow-down"></span>
+		`;
+
+		// console.log(id, icons[id]);
+		// this.weatherIcon.innerHTML = `<img width="100" src="./svg/${icons[id]}"></img>`;
+		this.weatherDesc.innerHTML = `${description}`;
+		this.temp.innerHTML = `${temp}º <span class="superindex">C</span>`;
+
+		this.feelsLike.innerHTML = `Feels Like ${feels}º`;
+
+		this.displayIcons();
+
+	};
+
+	displayIcons() {
+		let sunriseHm = moment.unix(this.weatherData.sys.sunrise).format('HH:mm');
+		let sunsetHm = moment.unix(this.weatherData.sys.sunset).format('HH:mm');
+
+		let sunrise = this.weatherData.sys.sunrise;
+		let sunset = this.weatherData.sys.sunset;
+		let time = parseInt(moment().format('X'));
+		let id = this.weatherData.weather[0].id;
+
+
+		const isDay = (time > sunrise && time < sunset) ? true : false;
+
+		let iconSet = (isDay) ? icons.dayIcons : icons.nightIcons;
+
+		console.log(iconSet);
+
+		this.weatherIcon.innerHTML = `<img width="100" src="./svg/${iconSet[id]}"></img>`;
+
+
+		// this.icons.innerHTML += `<p>generic icons</p>`;
+		// for (let key in icons.genericIcons) {
+		// 	this.icons.innerHTML += `<span>${icons.genericIcons[key]}</span> <img width="30" src="./otros-svg/${icons.genericIcons[key]}"><br>`;
+		// }
+
+		// this.icons.innerHTML += `<p>day icons</p>`;
+		// for (let key in icons.dayIcons) {
+		// 	this.icons.innerHTML += `<span>${icons.dayIcons[key]}</span> <img width="30" src="./otros-svg/${icons.dayIcons[key]}"><br>`;
+		// }
+
+		// this.icons.innerHTML += `<p>icon set</p>`;
+		// for (let key in iconSet) {
+		// 	this.icons.innerHTML += `<span>${iconSet[key]}</span> <img width="30" src="./svg/${iconSet[key]}"><br>`;
+		// }
+
+
+	};
 }
 
 let app = new weatherApp;

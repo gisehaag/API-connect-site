@@ -24,6 +24,7 @@ body {
 	margin: 100px auto;
 	padding: 60px 20px;
 	box-shadow: 2px 2px 5px rgb(219 100 0 / 80%);
+	text-align: left;
 }
 
 input {
@@ -66,9 +67,9 @@ input[type='button' i] {
 
 .current {
 	display: flex;
-	text-align: center;
+	/* text-align: center; */
 	align-items: center;
-	justify-content: center;
+	justify-content: start;
 }
 
 .weather-icon,
@@ -87,6 +88,11 @@ input[type='button' i] {
 	font-size: 0.8em;
 	display: block;
 	padding-top: 5px;
+}
+
+.superindex {
+	font-size: 0.5em;
+	vertical-align: super;
 }
 
 .footer {
