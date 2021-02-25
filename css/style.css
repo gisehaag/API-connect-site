@@ -18,7 +18,8 @@ body {
 }
 
 .container {
-	background: linear-gradient(#db6400, #fff76a);
+	/* background: linear-gradient(#db6400, #fff76a); */
+	background: #fff;
 	width: 40%;
 	margin: 100px auto;
 	padding: 60px 20px;
