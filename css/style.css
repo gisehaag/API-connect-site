@@ -10,7 +10,6 @@
 
 body {
 	background-color: #111;
-	color: #222;
 	font-family: 'Livvic', sans-serif;
 	margin: 0px;
 	text-align: center;
@@ -18,13 +17,23 @@ body {
 }
 
 .container {
+	/* background-color: attr(data-background); */
 	/* background: linear-gradient(#db6400, #fff76a); */
 	background: #fff;
+	color: #000;
 	width: 40%;
-	margin: 100px auto;
-	padding: 60px 20px;
-	box-shadow: 2px 2px 5px rgb(219 100 0 / 80%);
-	text-align: left;
+	margin: 100px auto 0;
+	padding: 40px 30px 20px;
+	box-shadow: 2px 2px 5px rgba(231, 221, 241, 0.8);
+	text-align: center;
+}
+
+main {
+	height: 0;
+}
+
+form {
+	margin-top: 30px;
 }
 
 input {
@@ -32,7 +41,7 @@ input {
 	font-family: 'Livvic', sans-serif;
 	background-color: #bbb;
 
-	font-size: 0.8em;
+	font-size: 1em;
 	font-style: bold;
 }
 
@@ -43,6 +52,9 @@ input:focus {
 
 input::placeholder {
 	color: #333;
+	font-style: italic;
+	/* background-color: rgb(193, 193, 193); */
+	background-color: rgba(193, 193, 193, 0.5);
 }
 
 input[type='text'] {
@@ -57,7 +69,7 @@ input[type='button' i] {
 	font-family: 'Livvic', sans-serif;
 	/* background-color: #ff3788; */
 	color: #111;
-	font-style: normal;
+	font-weight: 600;
 	font-size: 0.8em;
 	/* width: 20%; */
 	padding: 5px 15px;
