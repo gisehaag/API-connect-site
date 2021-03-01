@@ -1,5 +1,6 @@
 import icons from './icons.js';
 import background from './background.js';
+import windDirection from './wind.js';
 
 class WeatherApp {
 	constructor() {
@@ -79,6 +80,16 @@ class WeatherApp {
 		const temp = Math.floor((this.weatherData.main.temp - 273.15));
 		const feels = Math.floor((this.weatherData.main.feels_like - 273.15));
 
+		const windSpeed = this.weatherData.wind.speed;
+		const windKH = Math.round(windSpeed * 3.6);
+		let windDir = windDirection[Object.keys(windDirection).find(dir => this.weatherData.wind.deg < dir)];
+		const windIcon = (windSpeed < 15) ? './svg/wind.svg' : './svg/wind-sing.svg';
+
+		const humidity = this.weatherData.main.humidity;
+		const pressure = this.weatherData.main.pressure;
+
+
+
 		const sunrise = this.weatherData.sys.sunrise;
 		const sunset = this.weatherData.sys.sunset;
 		const time = parseInt(moment().format('X'));
@@ -86,6 +97,7 @@ class WeatherApp {
 
 		this.isDay = (time > sunrise && time < sunset) ? true : false;
 		const iconSet = (this.isDay) ? icons.dayIcons : icons.nightIcons;
+
 
 
 		this.infoApp.innerHTML = `
@@ -104,9 +116,19 @@ class WeatherApp {
 						<span class="weather-icon"><img width="100" src="./svg/${iconSet[id]}"></img></span>
 						<span class="small weather-desc">${description}</span>
 					</div>
-					<p class="big white-text temp">${temp}º <span class="superindex">C</span></p>
+					<p class="big temp">${temp}º <span class="superindex">C</span></p>
 				</div>
 				<p class="feels-like">Feels Like ${feels}º</p>
+				<p>
+					<img width="20" src="${windIcon}" alt="wind-icon"/>
+					${windKH}[km/h] from ${windDir}
+				</p>
+				<p>Humidity: ${humidity}%</p>
+				<p>
+					<img width="20" src="./svg/barometer.svg" alt="barometer-icon"/>
+					Presure: ${pressure} hPa
+				</p>
+
 			</div>
 		`;
 
