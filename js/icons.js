@@ -62,11 +62,12 @@ const genericIcons = {
 	snowy: 'snowy-2.svg',
 	snowy1: 'snowy-1.svg',
 	snowflake: 'snowflake.svg',
-	rain2: 'rain.svg',
+	501: 'rain.svg',
 	lightning: 'lightning.svg',
 	hurricane: 'hurricane.svg',
 	humidity: 'humidity.svg',
-	storm2: 'storm.svg',
+
+
 	hail2: 'hail-2.svg',
 	thermometer: 'thermometer-3.svg',
 	thermometer2: 'thermometer-2.svg',
@@ -80,12 +81,12 @@ const genericIcons = {
 const dayIcons = {
 	temperature: 'temperature.svg',
 	801: 'cloudy.svg',
-	rain1: 'rain-3.svg',
+	501: 'rain-1.svg',
+	511: 'rain-3.svg',
 	windy1: 'windy-1.svg',
 	sun1: 'sun.svg',
 	800: 'sun-1.svg',
 	storm3: 'storm-5.svg',
-	rain1: 'rain-1.svg',
 	snow: 'snow.svg',
 	storm1: 'storm-1.svg',
 	hail4: 'hail.svg',
@@ -93,15 +94,19 @@ const dayIcons = {
 	804: 'cloudy-2.svg',
 	803: 'cloud.svg',
 	802: 'cloud.svg',
+	502: 'storm.svg',
+	503: 'storm.svg',
 
 };
 
 const nightIcons = {
+	temperature: 'temperature-1.svg',
+	502: 'storm.svg',
+	503: 'storm.svg',
 	804: 'cloudy-2.svg',
 	803: 'cloud.svg',
 	802: 'cloud.svg',
-	temperature: 'temperature-1.svg',
-	rain: 'rain-4.svg',
+	511: 'rain-4.svg',
 	full: 'full-moon.svg',
 	hail: 'hail-1.svg',
 	foggy: 'foggy-2.svg',
@@ -112,7 +117,7 @@ const nightIcons = {
 	half1: 'half-moon.svg',
 	storm: 'storm-2.svg',
 	snowy: 'snowy.svg',
-	rain: 'rain-2.svg',
+	501: 'rain-2.svg',
 	storm: 'storm-3.svg',
 	windy: 'windy-2.svg',
 };
