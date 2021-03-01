@@ -88,8 +88,6 @@ class WeatherApp {
 		const humidity = this.weatherData.main.humidity;
 		const pressure = this.weatherData.main.pressure;
 
-
-
 		const sunrise = this.weatherData.sys.sunrise;
 		const sunset = this.weatherData.sys.sunset;
 		const time = parseInt(moment().format('X'));
@@ -97,40 +95,51 @@ class WeatherApp {
 
 		this.isDay = (time > sunrise && time < sunset) ? true : false;
 		const iconSet = (this.isDay) ? icons.dayIcons : icons.nightIcons;
+		const iconBG = (!this.isDay) ? 'night' : '';
 
 
 
 		this.infoApp.innerHTML = `
 			<div class="location">
-				<span class="icon-location1"></span>You are in: ${city}, ${country}
+				<span class="icon-location1"></span> You are in: ${city}, ${country}
 			</div>
-			<div class="wrapper" id="info">
-				<p class="small back-text date">Today is ${currentDate}</p>
-				<p class="small white-text extremes">
-					<img width="30" src="./svg/thermometer.svg" alt="celsius degree" />
-					Day ${tempMaxC}º <span class="icon-long-arrow-up"></span> ·
-					Night ${tempMinC}º <span class="icon-long-arrow-down"></span>
-				</p>
+			<div class="wrapper">
+				<p class="date">Today is ${currentDate}</p>
+				<div class="info-wrapper">
+					<p class="small ${iconBG}">
+						<img width="25" src="./svg/thermometer.svg" alt="celsius degree" />
+						Day ${tempMaxC}º <span class="icon icon-long-arrow-up"></span> ·
+						Night ${tempMinC}º <span class="icon icon-long-arrow-down"></span>
+					</p>
+				</div>
 				<div class="current">
 					<div id="icon">
-						<span class="weather-icon"><img width="100" src="./svg/${iconSet[id]}"></img></span>
+						<p class="weather-icon"><img width="100" src="./svg/${iconSet[id]}"></img></p>
 						<span class="small weather-desc">${description}</span>
 					</div>
-					<p class="big temp">${temp}º <span class="superindex">C</span></p>
+					<div>
+						<p class="big temp">${temp}º<span class="superindex">c</span></p>
+						<span class="feels-like">Feels Like ${feels}º</span>
+					</div>
 				</div>
-				<p class="feels-like">Feels Like ${feels}º</p>
-				<p>
-					<img width="20" src="${windIcon}" alt="wind-icon"/>
-					${windKH}[km/h] from ${windDir}
-				</p>
-				<p>Humidity: ${humidity}%</p>
-				<p>
-					<img width="20" src="./svg/barometer.svg" alt="barometer-icon"/>
-					Presure: ${pressure} hPa
-				</p>
+				<div class="wrapper-info">
+					<p class="small ${iconBG}">
+						<img width="25" src="${windIcon}" alt="wind-icon"/>
+						Wind: ${windKH} km/h from ${windDir}
+					</p>
+					<p class="small ${iconBG}">
+						<img width="25" src="./svg/humidity.svg" alt="humidity-icon"/>
+						Humidity: ${humidity} %</p>
+					<p class="small ${iconBG}">
+						<img width="25" src="./svg/barometer.svg" alt="barometer-icon"/>
+						Pressure: ${pressure} hPa
+					</p>
+				</div>
 
 			</div>
 		`;
+
+		this.input.setAttribute("placeholder", " try another city");
 
 		this.displayBackground();
 	};
