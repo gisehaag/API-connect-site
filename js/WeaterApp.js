@@ -71,18 +71,36 @@ class WeatherApp {
 		this.mainBox.style.height = 'auto';
 		this.errorMessage.innerHTML = ``;
 
+		const KELVIN = 273.15;
 		const city = this.weatherData.name;
 		const country = this.weatherData.sys.country;
 		const currentDate = moment().format('MMMM DD, HH:mm');
-		const tempMinC = Math.floor((this.weatherData.main.temp_min - 273.15));
-		const tempMaxC = Math.ceil((this.weatherData.main.temp_max - 273.15));
+		const tempMinC = Math.floor((this.weatherData.main.temp_min - KELVIN));
+		const tempMaxC = Math.ceil((this.weatherData.main.temp_max - KELVIN));
 		const description = this.weatherData.weather[0].description;
-		const temp = Math.floor((this.weatherData.main.temp - 273.15));
-		const feels = Math.floor((this.weatherData.main.feels_like - 273.15));
+		const temp = Math.floor((this.weatherData.main.temp - KELVIN));
+		const feels = Math.floor((this.weatherData.main.feels_like - KELVIN));
 
 		const windSpeed = this.weatherData.wind.speed;
-		const windKH = Math.round(windSpeed * 3.6);
-		let windDir = windDirection[Object.keys(windDirection).find(dir => this.weatherData.wind.deg < dir)];
+		const MStoKMH = 3.6;
+		const windKMH = Math.round(windSpeed * MStoKMH);
+		// let windDir = windDirection[Object.keys(windDirection).find(dir => this.weatherData.wind.deg < dir)];
+
+		const MAX_DIFF = 360;
+		let diff = MAX_DIFF;
+		let closer;
+
+		Object.keys(windDirection).forEach(key => {
+			let currentDiff = Math.abs(key - this.weatherData.wind.deg);
+
+			if (currentDiff < diff) {
+				diff = currentDiff;
+				closer = key;
+			}
+		});
+
+		let windDir = windDirection[closer];
+
 		const windIcon = (windSpeed < 15) ? './svg/wind.svg' : './svg/wind-sing.svg';
 
 		const humidity = this.weatherData.main.humidity;
@@ -125,7 +143,7 @@ class WeatherApp {
 				<div class="wrapper-info">
 					<p class="small ${iconBG}">
 						<img width="25" src="${windIcon}" alt="wind-icon"/>
-						Wind: ${windKH} km/h from ${windDir}
+						Wind: ${windKMH} km/h from ${windDir}
 					</p>
 					<p class="small ${iconBG}">
 						<img width="25" src="./svg/humidity.svg" alt="humidity-icon"/>
