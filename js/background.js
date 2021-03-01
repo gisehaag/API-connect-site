@@ -1,11 +1,11 @@
 const background = {
 	day: {
-		clear: 'linear-gradient(#0098EC, #c6f8ff)',
-		cloudy: 'linear-gradient(#7787A0, #C9D3DC)',
+		clear: 'linear-gradient(#0098ec, #c6f8ff)',
+		cloudy: 'linear-gradient(#526576, #dcdcdc)',
 	},
 	night: {
-		clear: 'linear-gradient(#003172, #006CB7)',
-		cloudy: 'linear-gradient(#092A50, #B7A6B5)',
+		clear: 'linear-gradient(#003172, #006cb7)',
+		cloudy: 'linear-gradient(#092a50, #B7a6b5)',
 	},
 }
 
