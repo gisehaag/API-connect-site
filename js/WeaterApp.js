@@ -125,7 +125,7 @@ class WeatherApp {
 				<p class="date">Today is ${currentDate}</p>
 				<div class="info-wrapper">
 					<p class="small ${iconBG}">
-						<img width="25" src="./svg/thermometer.svg" alt="celsius degree" />
+						<img width="35" src="./svg/thermometer.svg" alt="celsius degree" />
 						Day ${tempMaxC}º <span class="icon icon-long-arrow-up"></span> ·
 						Night ${tempMinC}º <span class="icon icon-long-arrow-down"></span>
 					</p>
@@ -142,14 +142,14 @@ class WeatherApp {
 				</div>
 				<div class="wrapper-info">
 					<p class="small ${iconBG}">
-						<img width="25" src="${windIcon}" alt="wind-icon"/>
+						<img width="35" src="${windIcon}" alt="wind-icon"/>
 						Wind: ${windKMH} km/h from ${windDir}
 					</p>
 					<p class="small ${iconBG}">
-						<img width="25" src="./svg/humidity.svg" alt="humidity-icon"/>
+						<img width="35" src="./svg/humidity.svg" alt="humidity-icon"/>
 						Humidity: ${humidity} %</p>
 					<p class="small ${iconBG}">
-						<img width="25" src="./svg/barometer.svg" alt="barometer-icon"/>
+						<img width="35" src="./svg/barometer.svg" alt="barometer-icon"/>
 						Pressure: ${pressure} hPa
 					</p>
 				</div>
