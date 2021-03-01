@@ -2,42 +2,24 @@ import icons from './icons.js';
 import background from './background.js';
 
 class WeatherApp {
-	constructor(config) {
-		if (!config.apiKey) {
-			console.error('⚠ You must have an API Key!');
-			return;
-		}
-
+	constructor() {
 		this.container = document.querySelector('.container');
-		this.apiKey = config.apiKey
+		this.apiKey = 'c00b4b29cd8af0576010b2bbfd606608';
 		this.assingElements();
 		this.getGeolocation();
 		this.addEvents();
 	}
 
 	assingElements() {
-
 		this.input = this.container.querySelector('#city');
 		this.button = this.container.querySelector('#button');
-
 		this.mainBox = this.container.querySelector('main');
 		this.errorMessage = this.container.querySelector('.error-message');
 		this.infoApp = this.container.querySelector('.info-app');
-
-		this.location = this.container.querySelector('.location');
-		this.date = this.container.querySelector('.date');
-		this.extremes = this.container.querySelector('.extremes');
-		this.weatherIcon = this.container.querySelector('.weather-icon');
-		this.weatherDesc = this.container.querySelector('.weather-desc');
-		this.temp = this.container.querySelector('.temp');
-		this.feelsLike = this.container.querySelector('.feels-like');
-
-		this.icons = this.container.querySelector('.icons');
 	}
 
 	addEvents() {
 		this.button.addEventListener('click', this.getWeather.bind(this));
-
 	}
 
 	async getGeolocation() {
@@ -113,7 +95,7 @@ class WeatherApp {
 			<div class="wrapper" id="info">
 				<p class="small back-text date">Today is ${currentDate}</p>
 				<p class="small white-text extremes">
-					<img width="25" src="./svg/thermometer.svg" alt="celsius degree" />
+					<img width="30" src="./svg/thermometer.svg" alt="celsius degree" />
 					Day ${tempMaxC}º <span class="icon-long-arrow-up"></span> ·
 					Night ${tempMinC}º <span class="icon-long-arrow-down"></span>
 				</p>
@@ -124,7 +106,7 @@ class WeatherApp {
 					</div>
 					<p class="big white-text temp">${temp}º <span class="superindex">C</span></p>
 				</div>
-				<p class="small white-text feels-like">Feels Like ${feels}º</p>
+				<p class="feels-like">Feels Like ${feels}º</p>
 			</div>
 		`;
 
@@ -149,4 +131,4 @@ class WeatherApp {
 	};
 }
 
-export default WeatherApp;
+const app = new WeatherApp();
