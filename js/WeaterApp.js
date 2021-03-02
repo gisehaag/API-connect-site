@@ -118,7 +118,7 @@ class WeatherApp {
 
 
 		this.infoApp.innerHTML = `
-			<div class="location">
+			<div>
 				<span class="icon-location1"></span> You are in: ${city}, ${country}
 			</div>
 			<div class="wrapper">
@@ -126,8 +126,8 @@ class WeatherApp {
 				<div class="info-wrapper">
 					<p class="small ${iconBG}">
 						<img width="35" src="./svg/thermometer.svg" alt="celsius degree" />
-						Day ${tempMaxC}º <span class="icon icon-long-arrow-up"></span> ·
-						Night ${tempMinC}º <span class="icon icon-long-arrow-down"></span>
+						<span>Day ${tempMaxC}º <span class="icon icon-arrow-up"></span></span>
+						<span>Night ${tempMinC}º <span class="icon icon-arrow-down"></span></span>
 					</p>
 				</div>
 				<div class="current">
@@ -136,8 +136,8 @@ class WeatherApp {
 						<span class="small weather-desc">${description}</span>
 					</div>
 					<div>
-						<p class="big temp">${temp}º<span class="superindex">c</span></p>
-						<span class="feels-like">Feels Like ${feels}º</span>
+						<p class="big">${temp}º<span class="superindex">c</span></p>
+						<span>Feels Like ${feels}º</span>
 					</div>
 				</div>
 				<div class="wrapper-info">
