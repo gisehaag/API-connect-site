@@ -9,3 +9,9 @@ I got some inspiration in [this article](https://webdesign.tutsplus.com/tutorial
 I played with JavaScript for displays differents background colors related to time and weather conditions, the same with icons.
 
 Now I feel more comfortable working with asynchronous JS, after fighting a little bit with it 🤓.
+
+My app looks like this, I very proud of it 😁
+
+[<img src="https://raw.githubusercontent.com/gisehaag/weather-app/main/weather-app.png"
+     alt="weather-app"
+     width=400px/>](https://gisehaag.github.io/weather-app/)
