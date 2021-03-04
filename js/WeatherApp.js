@@ -31,7 +31,7 @@ class WeatherApp {
 				const lat = position.coords.latitude;
 				const lon = position.coords.longitude;
 				this.url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${this.apiKey}`;
-				this.getWeather();
+				this.consultAPI();
 
 			} catch (e) {
 				console.error(e.message, e);
