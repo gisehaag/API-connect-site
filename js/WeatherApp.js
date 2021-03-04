@@ -1,7 +1,6 @@
 import icons from './icons.js';
 import background from './background.js';
 import windDirection from './wind.js';
-
 class WeatherApp {
 	constructor() {
 		this.container = document.querySelector('.container');
@@ -67,7 +66,6 @@ class WeatherApp {
 			})
 			.then(data => {
 				this.weatherData = data;
-				this.resetInput();
 				this.displayData();
 			})
 			.catch(e => {
@@ -76,19 +74,25 @@ class WeatherApp {
 			});
 	}
 
+	displayData() {
+		this.resetInput();
+		this.resetErrorField();
+		this.parseAPIData();
+		this.setBackground();
+		this.createTemplate();
+
+		this.input.setAttribute("placeholder", "try another city");
+	};
+
 	displayErrorMessage(message) {
 		this.resetAll();
 		this.errorMessage.innerHTML = message;
 	}
 
 	resetAll() {
-		this.resetBackground();
 		this.resetInput();
 		this.resetData();
-	}
-
-	resetData() {
-		this.infoApp.innerHTML = '';
+		this.resetBackground();
 	}
 
 	resetInput() {
@@ -96,21 +100,28 @@ class WeatherApp {
 		this.input.focus();
 	}
 
+	resetData() {
+		this.infoApp.innerHTML = '';
+	}
+
 	resetErrorField() {
 		this.mainBox.style.height = 'auto';
 		this.errorMessage.innerHTML = '';
 	}
 
-	displayData() {
-		this.resetErrorField();
-		this.parseAPIData();
-		this.createTemplate();
+	resetBackground() {
+		this.container.style.color = '#000';
+		this.container.style.background = 'linear-gradient(#bbb, #fff)';
+	}
 
-		this.input.setAttribute("placeholder", "try another city");
-	};
+	parseAPIData() {
+		this.setIconSet();
+		this.setGeneralInfo();
+		this.setTempertures();
+		this.setWind();
+	}
 
 	createTemplate() {
-		this.getBackground();
 		this.infoApp.innerHTML = `
 			<div>
 				<span class="icon-location1"></span><span>You are in: ${this.city}, ${this.country}</span>
@@ -155,18 +166,7 @@ class WeatherApp {
 		`;
 	}
 
-	getIconSet() {
-		const time = parseInt(moment().format('X'));
-		const sunrise = this.weatherData.sys.sunrise;
-		const sunset = this.weatherData.sys.sunset;
-
-		this.isDay = (time > sunrise && time < sunset) ? true : false;
-		this.iconSet = (this.isDay) ? icons.dayIcons : icons.nightIcons;
-		this.id = this.weatherData.weather[0].id;
-		this.iconBG = (!this.isDay) ? 'night' : '';
-	}
-
-	getBackground() {
+	setBackground() {
 		const clouds = this.weatherData.clouds;
 		const colorText = (this.isDay) ? '#000' : '#fff';
 		this.container.style.color = colorText;
@@ -177,18 +177,18 @@ class WeatherApp {
 		this.container.style.background = backgroundColor;
 	};
 
-	resetBackground() {
-		this.container.style.color = '#000';
-		this.container.style.background = 'linear-gradient(#bbb, #fff)';
+	setIconSet() {
+		const time = parseInt(moment().format('X'));
+		const sunrise = this.weatherData.sys.sunrise;
+		const sunset = this.weatherData.sys.sunset;
+
+		this.isDay = (time > sunrise && time < sunset) ? true : false;
+		this.iconSet = (this.isDay) ? icons.dayIcons : icons.nightIcons;
+		this.id = this.weatherData.weather[0].id;
+		this.iconBG = (!this.isDay) ? 'night' : '';
 	}
 
-	parseAPIData() {
-		this.getGeneralInfo();
-		this.getTempertures();
-		this.getWind();
-	}
-
-	getGeneralInfo() {
+	setGeneralInfo() {
 		const SEC_IN_HOUR = 3600;
 		const timezone = this.weatherData.timezone / SEC_IN_HOUR;
 
@@ -201,21 +201,14 @@ class WeatherApp {
 		this.currentDate = moment().utcOffset(timezone).format('MMMM DD, HH:mm');
 	}
 
-	convertKtoC(temperature, type = "floor") {
-		const KELVIN = 273.15;
-		return Math[type]((temperature - KELVIN));
-	}
-
-	getTempertures() {
+	setTempertures() {
 		this.tempMinC = this.convertKtoC(this.weatherData.main.temp_min);
 		this.tempMaxC = this.convertKtoC(this.weatherData.main.temp_max, 'ceil');
 		this.temp = this.convertKtoC(this.weatherData.main.temp);
 		this.feels = this.convertKtoC(this.weatherData.main.feels_like);
 	}
 
-	getWind() {
-		this.getIconSet();
-
+	setWind() {
 		const MS_TO_KMH = 3.6;
 		const MAX_DIFF = 360;
 		const windSpeed = this.weatherData.wind.speed;
@@ -227,7 +220,6 @@ class WeatherApp {
 
 		Object.keys(windDirection).forEach(key => {
 			let currentDiff = Math.abs(key - this.weatherData.wind.deg);
-
 			if (currentDiff < diff) {
 				diff = currentDiff;
 				closer = key;
@@ -235,6 +227,11 @@ class WeatherApp {
 		});
 
 		this.windDir = windDirection[closer];
+	}
+
+	convertKtoC(temperature, type = "floor") {
+		const KELVIN = 273.15;
+		return Math[type]((temperature - KELVIN));
 	}
 }
 
