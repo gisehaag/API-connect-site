@@ -132,12 +132,12 @@ input[type='text'] {
 	padding: 0;
 }
 
-input[type='text' i] {
+input[type='text'] {
 	padding: 5px 0;
 	margin: 0;
 }
 
-input[type='submit' i] {
+input[type='submit'] {
 	font-family: 'Livvic', sans-serif;
 	color: #111;
 	font-weight: 600;
