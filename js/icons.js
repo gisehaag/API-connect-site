@@ -4,13 +4,11 @@ const genericIcons = {
 	windsign: 'wind-sign.svg',
 	sunset: 'sunset.svg',
 	sunrise: 'sunrise.svg',
-	humidity: 'humidity.svg',
 	thermometer: 'thermometer-3.svg',
 	thermometer2: 'thermometer-2.svg',
 	foggy: 'foggy.svg',
 	thermometer: 'thermometer-1.svg',
 	thermometer: 'thermometer.svg',
-	barometer: 'barometer.svg',
 };
 
 const dayIcons = {
@@ -70,6 +68,12 @@ const dayIcons = {
 	802: 'cloud.svg',
 	803: 'cloud.svg',
 	804: 'cloudy-2.svg',
+	thermometer: 'thermometer.svg',
+	wind: 'wind.svg',
+	windsign: 'wind-sign.svg',
+	humidity: 'humidity.svg',
+	barometer: 'barometer.svg',
+
 	// temperature: 'temperature.svg',
 	// windy1: 'windy-1.svg',
 	// sun1: 'sun.svg',
@@ -132,6 +136,12 @@ const nightIcons = {
 	802: 'cloud.svg',
 	803: 'cloud.svg',
 	804: 'cloudy-2.svg',
+	thermometer: 'thermometer.svg',
+	wind: 'wind.svg',
+	windsign: 'wind-sign.svg',
+	humidity: 'humidity.svg',
+	barometer: 'barometer.svg',
+
 	// temperature: 'temperature-1.svg',
 	// full: 'full-moon.svg',
 	// half: 'half-moon-1.svg',
