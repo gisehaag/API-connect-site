@@ -78,7 +78,6 @@ class WeatherApp {
 		this.resetInput();
 		this.resetErrorField();
 		this.parseAPIData();
-		this.setBackground();
 		this.createTemplate();
 
 		this.input.setAttribute("placeholder", "try another city");
@@ -116,6 +115,7 @@ class WeatherApp {
 
 	parseAPIData() {
 		this.setIconSet();
+		this.setBackground();
 		this.setGeneralInfo();
 		this.setTempertures();
 		this.setWind();
